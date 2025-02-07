@@ -1,0 +1,114 @@
+[
+    {
+        "name": "SNI.csv",
+        "path": "SNI.csv",
+        "sha": "f60fdf15744ebb7233184ca91d048415d05caea3",
+        "size": 13668,
+        "url": "https://api.github.com/repos/laloraptor/BasesClase1/contents/SNI.csv?ref=main",
+        "html_url": "https://github.com/laloraptor/BasesClase1/blob/main/SNI.csv",
+        "git_url": "https://api.github.com/repos/laloraptor/BasesClase1/git/blobs/f60fdf15744ebb7233184ca91d048415d05caea3",
+        "download_url": "https://raw.githubusercontent.com/laloraptor/BasesClase1/main/SNI.csv",
+        "type": "file",
+        "_links": {
+            "self": "https://api.github.com/repos/laloraptor/BasesClase1/contents/SNI.csv?ref=main",
+            "git": "https://api.github.com/repos/laloraptor/BasesClase1/git/blobs/f60fdf15744ebb7233184ca91d048415d05caea3",
+            "html": "https://github.com/laloraptor/BasesClase1/blob/main/SNI.csv"
+        }
+    },
+    {
+        "name": "datos__beca_para_endpoint.csv",
+        "path": "datos__beca_para_endpoint.csv",
+        "sha": "893be76ca5fe6e325bc881b4974d17de0d9f95d1",
+        "size": 8645,
+        "url": "https://api.github.com/repos/laloraptor/BasesClase1/contents/datos__beca_para_endpoint.csv?ref=main",
+        "html_url": "https://github.com/laloraptor/BasesClase1/blob/main/datos__beca_para_endpoint.csv",
+        "git_url": "https://api.github.com/repos/laloraptor/BasesClase1/git/blobs/893be76ca5fe6e325bc881b4974d17de0d9f95d1",
+        "download_url": "https://raw.githubusercontent.com/laloraptor/BasesClase1/main/datos__beca_para_endpoint.csv",
+        "type": "file",
+        "_links": {
+            "self": "https://api.github.com/repos/laloraptor/BasesClase1/contents/datos__beca_para_endpoint.csv?ref=main",
+            "git": "https://api.github.com/repos/laloraptor/BasesClase1/git/blobs/893be76ca5fe6e325bc881b4974d17de0d9f95d1",
+            "html": "https://github.com/laloraptor/BasesClase1/blob/main/datos__beca_para_endpoint.csv"
+        }
+    },
+    {
+        "name": "datos_beca_dinamico_mejorado.csv",
+        "path": "datos_beca_dinamico_mejorado.csv",
+        "sha": "37e907f0db726b3c3ca0fcc89ec2636ff7100a94",
+        "size": 44810,
+        "url": "https://api.github.com/repos/laloraptor/BasesClase1/contents/datos_beca_dinamico_mejorado.csv?ref=main",
+        "html_url": "https://github.com/laloraptor/BasesClase1/blob/main/datos_beca_dinamico_mejorado.csv",
+        "git_url": "https://api.github.com/repos/laloraptor/BasesClase1/git/blobs/37e907f0db726b3c3ca0fcc89ec2636ff7100a94",
+        "download_url": "https://raw.githubusercontent.com/laloraptor/BasesClase1/main/datos_beca_dinamico_mejorado.csv",
+        "type": "file",
+        "_links": {
+            "self": "https://api.github.com/repos/laloraptor/BasesClase1/contents/datos_beca_dinamico_mejorado.csv?ref=main",
+            "git": "https://api.github.com/repos/laloraptor/BasesClase1/git/blobs/37e907f0db726b3c3ca0fcc89ec2636ff7100a94",
+            "html": "https://github.com/laloraptor/BasesClase1/blob/main/datos_beca_dinamico_mejorado.csv"
+        }
+    },
+    {
+        "name": "df_biblioteca.csv",
+        "path": "df_biblioteca.csv",
+        "sha": "8a1d203388a26cb30445f834e55512c25bba1086",
+        "size": 49415,
+        "url": "https://api.github.com/repos/laloraptor/BasesClase1/contents/df_biblioteca.csv?ref=main",
+        "html_url": "https://github.com/laloraptor/BasesClase1/blob/main/df_biblioteca.csv",
+        "git_url": "https://api.github.com/repos/laloraptor/BasesClase1/git/blobs/8a1d203388a26cb30445f834e55512c25bba1086",
+        "download_url": "https://raw.githubusercontent.com/laloraptor/BasesClase1/main/df_biblioteca.csv",
+        "type": "file",
+        "_links": {
+            "self": "https://api.github.com/repos/laloraptor/BasesClase1/contents/df_biblioteca.csv?ref=main",
+            "git": "https://api.github.com/repos/laloraptor/BasesClase1/git/blobs/8a1d203388a26cb30445f834e55512c25bba1086",
+            "html": "https://github.com/laloraptor/BasesClase1/blob/main/df_biblioteca.csv"
+        }
+    },
+    {
+        "name": "df_estatura.csv",
+        "path": "df_estatura.csv",
+        "sha": "bbc3a947c9db316bea085a472c991c57c671c2b8",
+        "size": 10784,
+        "url": "https://api.github.com/repos/laloraptor/BasesClase1/contents/df_estatura.csv?ref=main",
+        "html_url": "https://github.com/laloraptor/BasesClase1/blob/main/df_estatura.csv",
+        "git_url": "https://api.github.com/repos/laloraptor/BasesClase1/git/blobs/bbc3a947c9db316bea085a472c991c57c671c2b8",
+        "download_url": "https://raw.githubusercontent.com/laloraptor/BasesClase1/main/df_estatura.csv",
+        "type": "file",
+        "_links": {
+            "self": "https://api.github.com/repos/laloraptor/BasesClase1/contents/df_estatura.csv?ref=main",
+            "git": "https://api.github.com/repos/laloraptor/BasesClase1/git/blobs/bbc3a947c9db316bea085a472c991c57c671c2b8",
+            "html": "https://github.com/laloraptor/BasesClase1/blob/main/df_estatura.csv"
+        }
+    },
+    {
+        "name": "df_repositorios.csv",
+        "path": "df_repositorios.csv",
+        "sha": "c200d6938efa5088e045964c1955f6ff58f79278",
+        "size": 6773,
+        "url": "https://api.github.com/repos/laloraptor/BasesClase1/contents/df_repositorios.csv?ref=main",
+        "html_url": "https://github.com/laloraptor/BasesClase1/blob/main/df_repositorios.csv",
+        "git_url": "https://api.github.com/repos/laloraptor/BasesClase1/git/blobs/c200d6938efa5088e045964c1955f6ff58f79278",
+        "download_url": "https://raw.githubusercontent.com/laloraptor/BasesClase1/main/df_repositorios.csv",
+        "type": "file",
+        "_links": {
+            "self": "https://api.github.com/repos/laloraptor/BasesClase1/contents/df_repositorios.csv?ref=main",
+            "git": "https://api.github.com/repos/laloraptor/BasesClase1/git/blobs/c200d6938efa5088e045964c1955f6ff58f79278",
+            "html": "https://github.com/laloraptor/BasesClase1/blob/main/df_repositorios.csv"
+        }
+    },
+    {
+        "name": "nueva_base_sni.csv",
+        "path": "nueva_base_sni.csv",
+        "sha": "942d58c97aaa6e2df3b96365e39666c02e93a9f1",
+        "size": 13645,
+        "url": "https://api.github.com/repos/laloraptor/BasesClase1/contents/nueva_base_sni.csv?ref=main",
+        "html_url": "https://github.com/laloraptor/BasesClase1/blob/main/nueva_base_sni.csv",
+        "git_url": "https://api.github.com/repos/laloraptor/BasesClase1/git/blobs/942d58c97aaa6e2df3b96365e39666c02e93a9f1",
+        "download_url": "https://raw.githubusercontent.com/laloraptor/BasesClase1/main/nueva_base_sni.csv",
+        "type": "file",
+        "_links": {
+            "self": "https://api.github.com/repos/laloraptor/BasesClase1/contents/nueva_base_sni.csv?ref=main",
+            "git": "https://api.github.com/repos/laloraptor/BasesClase1/git/blobs/942d58c97aaa6e2df3b96365e39666c02e93a9f1",
+            "html": "https://github.com/laloraptor/BasesClase1/blob/main/nueva_base_sni.csv"
+        }
+    }
+]
