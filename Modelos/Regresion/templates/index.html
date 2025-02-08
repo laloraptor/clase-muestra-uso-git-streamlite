@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción de Estatura para Clínica de Natalidad</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f0f8ff;
+        }
+        .container {
+            text-align: center;
+            background: #ffffff;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            width: 300px;
+        }
+        h1 {
+            color: #4a90e2;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 1em;
+            background-color: #4a90e2;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #357abd;
+        }
+        .resultado {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #4a90e2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Predicción de Estatura</h1>
+        <form method="POST">
+            <label for="estatura_padres">Ingresa la estatura de los padres (cm):</label>
+            <input type="number" id="estatura_padres" name="estatura_padres" step="0.1" placeholder="Ej. 170" required>
+            <button type="submit">Obtener Predicción</button>
+        </form>
+        {% if resultado %}
+            <p class="resultado">{{ resultado }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid World Iterative Learning</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            border: 2px solid #000;
+            margin: 10px;
+        }
+        #controls {
+            margin: 10px;
+        }
+        #path-log, #route-evaluation, #best-routes, #eliminated-routes, #actions-log {
+            list-style-type: decimal;
+            padding: 0;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        #iteration-status {
+            font-weight: bold;
+            margin: 10px;
+        }
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Grid World Iterative Learning</h1>
+    <div id="controls">
+        <p>Tiempo transcurrido: <span id="timer">0</span> segundos</p>
+        <p id="iteration-status">Iteración en curso: -</p>
+        <button onclick="executeBestRoute(0)">Ejecutar Mejor Ruta 1</button>
+        <button onclick="executeBestRoute(1)">Ejecutar Mejor Ruta 2</button>
+        <button onclick="executeBestRoute(2)">Ejecutar Mejor Ruta 3</button>
+        <button onclick="restartTraining()">Reiniciar Entrenamiento</button>
+    </div>
+    <ul id="path-log"></ul>
+    <h3>Evaluación de la Ruta</h3>
+    <ul id="route-evaluation"></ul>
+    <h3>Mejores Rutas Aprendidas</h3>
+    <ul id="best-routes"></ul>
+    <h3>Rutas Eliminadas</h3>
+    <ul id="eliminated-routes"></ul>
+    <h3>Acciones del Agente</h3>
+    <ul id="actions-log"></ul>
+    <canvas id="gridCanvas" width="300" height="300"></canvas>
+
+    <script>
+        const gridSize = 6;
+        const start = [0, 0];
+        const goal = [5, 5];
+        const obstacles = [[2, 2], [3, 2], [4, 2]];
+        let agentPosition = [...start];
+        let learnedPaths = [];
+        let pathLog = [];
+        let bestRoutes = [];
+        let eliminatedRoutes = [];
+        let visitedPositions = new Set();
+        let stepCounter = 0;
+
+        const canvas = document.getElementById('gridCanvas');
+        const ctx = canvas.getContext('2d');
+        const iterationStatus = document.getElementById('iteration-status');
+        const eliminatedRoutesElement = document.getElementById('eliminated-routes');
+        const actionsLogElement = document.getElementById('actions-log');
+
+        function drawGrid() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const cellSize = canvas.width / gridSize;
+
+            for (let i = 0; i < gridSize; i++) {
+                for (let j = 0; j < gridSize; j++) {
+                    ctx.strokeStyle = 'black';
+                    ctx.strokeRect(j * cellSize, i * cellSize, cellSize, cellSize);
+                }
+            }
+
+            obstacles.forEach(([x, y]) => {
+                ctx.fillStyle = 'black';
+                ctx.fillRect(y * cellSize, x * cellSize, cellSize, cellSize);
+            });
+
+            ctx.fillStyle = 'green';
+            ctx.fillRect(goal[1] * cellSize, goal[0] * cellSize, cellSize, cellSize);
+
+            ctx.fillStyle = 'red';
+            ctx.beginPath();
+            ctx.arc(agentPosition[1] * cellSize + cellSize / 2, agentPosition[0] * cellSize + cellSize / 2, cellSize / 3, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        function logAction(action, reward) {
+            stepCounter++;
+            const li = document.createElement('li');
+            li.textContent = `${stepCounter}. ${action} - ${reward >= 0 ? 'Recompensa' : 'Castigo'}: ${reward}`;
+            actionsLogElement.appendChild(li);
+        }
+
+        function logEliminatedRoute(path) {
+            eliminatedRoutes.push(path);
+            const li = document.createElement('li');
+            li.textContent = `Ruta Eliminada: ${path.join(' -> ')}`;
+            eliminatedRoutesElement.appendChild(li);
+        }
+
+        function calculateReward(position) {
+            const distanceToGoal = Math.abs(goal[0] - position[0]) + Math.abs(goal[1] - position[1]);
+            return 10 - distanceToGoal; // Higher reward for being closer to the goal
+        }
+
+        function moveAgent(strategy, callback) {
+            const actions = [
+                { move: [-1, 0], name: 'Arriba' },
+                { move: [0, 1], name: 'Derecha' },
+                { move: [1, 0], name: 'Abajo' },
+                { move: [0, -1], name: 'Izquierda' }
+            ];
+
+            const validActions = actions.filter(action => {
+                const newPosition = [agentPosition[0] + action.move[0], agentPosition[1] + action.move[1]];
+                return (
+                    newPosition[0] >= 0 && newPosition[0] < gridSize &&
+                    newPosition[1] >= 0 && newPosition[1] < gridSize &&
+                    !obstacles.some(([x, y]) => x === newPosition[0] && y === newPosition[1]) &&
+                    !visitedPositions.has(`${newPosition[0]},${newPosition[1]}`)
+                );
+            });
+
+            if (validActions.length === 0) {
+                logEliminatedRoute([...pathLog]);
+                pathLog = [];
+                agentPosition = [...start];
+                visitedPositions.clear();
+                return;
+            }
+
+            const action = validActions[Math.floor(Math.random() * validActions.length)];
+            const newPosition = [agentPosition[0] + action.move[0], agentPosition[1] + action.move[1]];
+            visitedPositions.add(`${newPosition[0]},${newPosition[1]}`);
+
+            pathLog.push(action.name);
+            agentPosition = newPosition;
+            drawGrid();
+
+            const reward = calculateReward(agentPosition);
+            logAction(action.name, reward);
+
+            if (agentPosition[0] === goal[0] && agentPosition[1] === goal[1]) {
+                learnedPaths.push([...pathLog]);
+                pathLog = [];
+                const li = document.createElement('li');
+                li.textContent = `Ruta Encontrada: ${learnedPaths[learnedPaths.length - 1].join(' -> ')}`;
+                document.getElementById('best-routes').appendChild(li);
+                if (callback) callback();
+            }
+        }
+
+        function runIterations() {
+            const iteration1 = () => {
+                iterationStatus.textContent = 'Iteración en curso: 1 - Exploración Aleatoria';
+                let steps = 0;
+                const interval = setInterval(() => {
+                    moveAgent('random', () => {
+                        clearInterval(interval);
+                        iteration2();
+                    });
+                    steps++;
+                    if (steps > 100) clearInterval(interval);
+                }, 200);
+            };
+
+            const iteration2 = () => {
+                iterationStatus.textContent = 'Iteración en curso: 2 - Evitando Rutas Inválidas';
+                agentPosition = [...start];
+                visitedPositions.clear();
+                drawGrid();
+                let steps = 0;
+                const interval = setInterval(() => {
+                    moveAgent('avoid_invalid', () => {
+                        clearInterval(interval);
+                        iteration3();
+                    });
+                    steps++;
+                    if (steps > 100) clearInterval(interval);
+                }, 200);
+            };
+
+            const iteration3 = () => {
+                iterationStatus.textContent = 'Iteración en curso: 3 - Optimización de Movimientos';
+                agentPosition = [...start];
+                visitedPositions.clear();
+                drawGrid();
+                let steps = 0;
+                const interval = setInterval(() => {
+                    moveAgent('optimize', () => {
+                        clearInterval(interval);
+                    });
+                    steps++;
+                    if (steps > 100) clearInterval(interval);
+                }, 200);
+            };
+
+            iteration1();
+        }
+
+        function executeBestRoute(index) {
+            agentPosition = [...start];
+            drawGrid();
+        }
+
+        function restartTraining() {
+            location.reload();
+        }
+
+        runIterations();
+        drawGrid();
+    </script>
+</body>
+</html>
