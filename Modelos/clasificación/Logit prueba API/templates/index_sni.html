@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora SNI - Universidad</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+        .container {
+            margin-top: 50px;
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center mb-4">Calculadora SNI</h2>
+        <p class="text-center">Ingrese sus datos para calcular la probabilidad de ingresar al Sistema Nacional de Investigadores.</p>
+        <form method="POST" action="/predict">
+            <div class="mb-3">
+                <label for="anios_desde_doctorado" class="form-label">Años desde el Doctorado</label>
+                <input type="number" step="0.1" class="form-control" id="anios_desde_doctorado" name="anios_desde_doctorado" required>
+            </div>
+            <div class="mb-3">
+                <label for="numero_publicaciones" class="form-label">Número de Publicaciones</label>
+                <input type="number" step="1" class="form-control" id="numero_publicaciones" name="numero_publicaciones" required>
+            </div>
+            <div class="mb-3">
+                <label for="indice_h_promedio" class="form-label">Índice H Promedio</label>
+                <input type="number" step="0.1" class="form-control" id="indice_h_promedio" name="indice_h_promedio" required>
+            </div>
+            <div class="mb-3">
+                <label for="anios_docente" class="form-label">Años como Docente</label>
+                <input type="number" step="0.1" class="form-control" id="anios_docente" name="anios_docente" required>
+            </div>
+            <div class="mb-3">
+                <label for="ha_ganado_premios" class="form-label">¿Ha Ganado Premios? (1 = Sí, 0 = No)</label>
+                <input type="number" step="1" min="0" max="1" class="form-control" id="ha_ganado_premios" name="ha_ganado_premios" required>
+            </div>
+            <div class="mb-3">
+                <label for="horas_clase_semana" class="form-label">Horas de Clase por Semana</label>
+                <input type="number" step="0.1" class="form-control" id="horas_clase_semana" name="horas_clase_semana" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Calcular Probabilidad</button>
+        </form>
+        {% if result %}
+            <div class="alert alert-info mt-4" role="alert">
+                {{ result }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
